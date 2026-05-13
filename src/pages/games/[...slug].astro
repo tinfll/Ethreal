@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('games');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <article>
+    <header style="margin-top: 2rem;">
+      <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
+        {data.status}
+      </div>
+      <h1 style="margin-top: 0.2em;">{data.title}</h1>
+      <p style="font-size: 1.1rem;">{data.summary}</p>
+      <div>{data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+      {
+        data.links.length > 0 && (
+          <p style="margin-top: 1rem;">
+            {data.links.map((l) => (
+              <a href={l.url} style="margin-right: 1rem;">{l.label} →</a>
+            ))}
+          </p>
+        )
+      }
+    </header>
+    <Content />
+  </article>
+</BaseLayout>

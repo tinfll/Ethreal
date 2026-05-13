@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const tl = await getEntry('timeline', 'main');
+const events = tl?.data.events ?? [];
+---
+
+<BaseLayout title="Timeline">
+  <h1>Timeline</h1>
+  <p style="color: var(--ink-dim);">A causal sketch of what has been.</p>
+
+  <ol class="timeline">
+    {
+      events.map((e) => (
+        <li class="timeline__item">
+          <div class="timeline__year">
+            <span class="timeline__era">{e.era}</span>
+            <span class="timeline__date">{e.year}</span>
+          </div>
+          <div class="timeline__body">
+            <h3 style="margin: 0;">{e.title}</h3>
+            <p style="margin: 0.3rem 0 0;">{e.description}</p>
+            {e.characters.length > 0 && (
+              <div style="margin-top: 0.4rem;">
+                {e.characters.map((c) => <span class="tag">{c}</span>)}
+              </div>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>
+
+<style>
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    border-left: 1px solid var(--line);
+  }
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1.4rem;
+    padding: 1rem 0 1rem 1.2rem;
+    position: relative;
+  }
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 1.4rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline__year {
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline__era {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+  }
+  .timeline__date {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+  }
+  @media (max-width: 640px) {
+    .timeline__item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

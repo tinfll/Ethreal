@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CharacterViewer from '@/components/CharacterViewer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('characters', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+---
+
+<BaseLayout title={data.name} description={data.summary}>
+  <article>
+    <header style="margin-top: 2rem;">
+      <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
+        {data.faction ?? 'Unaffiliated'} · {data.era ?? 'Era unknown'}
+      </div>
+      <h1 style="margin-top: 0.2em;">{data.name}</h1>
+      {data.title && <p style="font-style: italic; color: var(--ink-dim); margin-top: -0.6em;">{data.title}</p>}
+      <p style="font-size: 1.1rem;">{data.summary}</p>
+      <div>{data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+    </header>
+
+    {
+      data.model && (
+        <section style="margin: 2rem 0;">
+          <CharacterViewer
+            src={data.model.src}
+            format={data.model.format}
+            scale={data.model.scale}
+          />
+          <p style="font-size: 0.8rem; color: var(--ink-dim); margin-top: 0.4rem;">
+            Drag to rotate · scroll to zoom · right-click to pan
+          </p>
+        </section>
+      )
+    }
+
+    <Content />
+  </article>
+</BaseLayout>
