@@ -1,0 +1,224 @@
+@import 'katex/dist/katex.min.css';
+
+:root {
+  --bg: #07080d;
+  --bg-elev: #0e1018;
+  --bg-elev-2: #151826;
+  --ink: #e7e8ef;
+  --ink-dim: #9aa0b3;
+  --line: #232739;
+  --accent: #c9a96a;
+  --accent-2: #7aa7ff;
+  --danger: #d96a6a;
+  --serif: 'Cormorant Garamond', 'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'JetBrains Mono', Menlo, monospace;
+  --measure: 70ch;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(122, 167, 255, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(201, 169, 106, 0.06), transparent 60%);
+  z-index: -1;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+a:hover {
+  border-bottom-color: var(--accent);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  margin: 1.6em 0 0.4em;
+}
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.2em;
+}
+h3 {
+  font-size: 1.3rem;
+  color: var(--ink-dim);
+}
+
+p,
+ul,
+ol {
+  max-width: var(--measure);
+}
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+:not(pre) > code {
+  background: var(--bg-elev-2);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  color: var(--accent);
+}
+pre {
+  background: var(--bg-elev) !important;
+  padding: 1em 1.2em;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+blockquote {
+  margin: 1.4em 0;
+  padding: 0.4em 1.2em;
+  border-left: 2px solid var(--accent);
+  color: var(--ink-dim);
+  font-style: italic;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5em 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 8, 13, 0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.9rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.site-header__brand {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 0;
+}
+.site-header__nav {
+  display: flex;
+  gap: 1.4rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.site-header__nav a {
+  color: var(--ink-dim);
+  border: 0;
+}
+.site-header__nav a:hover,
+.site-header__nav a[aria-current='page'] {
+  color: var(--ink);
+}
+
+.site-footer {
+  margin-top: 4rem;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  margin-right: 0.3em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4em 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+.card {
+  display: block;
+  padding: 1.1rem 1.2rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: transform 160ms ease, border-color 160ms ease;
+  color: inherit;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.card__title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  margin: 0 0 0.3rem;
+}
+.card__meta {
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+.card__summary {
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+}

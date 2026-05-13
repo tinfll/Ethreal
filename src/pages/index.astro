@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const characters = (await getCollection('characters', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
+---
+
+<BaseLayout title="Home">
+  <section style="padding: 4rem 0 2rem;">
+    <h1 style="margin: 0;">Ethreal</h1>
+    <p style="font-size: 1.15rem; color: var(--ink-dim); max-width: 60ch;">
+      An archive of a world that does not exist — its peoples, its physics, its
+      long unspooling history. Wander through.
+    </p>
+    <p>
+      <a href="/characters/">Characters →</a> &nbsp;
+      <a href="/lore/">Lore →</a> &nbsp;
+      <a href="/timeline/">Timeline →</a>
+    </p>
+  </section>
+
+  {
+    characters.length > 0 && (
+      <section>
+        <h2>Featured characters</h2>
+        <div class="card-grid">
+          {characters.map((c) => (
+            <a class="card" href={`/characters/${c.slug}/`}>
+              <h3 class="card__title">{c.data.name}</h3>
+              {c.data.title && <div class="card__meta">{c.data.title}</div>}
+              <p class="card__summary">{c.data.summary}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

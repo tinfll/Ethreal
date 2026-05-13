@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const games = await getCollection('games');
+---
+
+<BaseLayout title="Games">
+  <h1>Games</h1>
+  <p style="color: var(--ink-dim);">
+    Interactive expressions of the world.
+  </p>
+
+  {
+    games.length === 0 ? (
+      <p style="color: var(--ink-dim); font-style: italic;">Nothing announced yet.</p>
+    ) : (
+      <div class="card-grid">
+        {games.map((g) => (
+          <a class="card" href={`/games/${g.slug}/`}>
+            <h3 class="card__title">{g.data.title}</h3>
+            <div class="card__meta">{g.data.status}</div>
+            <p class="card__summary">{g.data.summary}</p>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>
