@@ -1,17 +1,17 @@
 @import 'katex/dist/katex.min.css';
 
 :root {
-  --bg: #07080d;
-  --bg-elev: #0e1018;
-  --bg-elev-2: #151826;
-  --ink: #e7e8ef;
-  --ink-dim: #9aa0b3;
-  --line: #232739;
-  --accent: #c9a96a;
-  --accent-2: #7aa7ff;
-  --danger: #d96a6a;
-  --serif: 'Cormorant Garamond', 'EB Garamond', 'Iowan Old Style', Georgia, serif;
-  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --bg: #ffffff;
+  --bg-elev: #e0ecf3;
+  --bg-elev-2: #cfe0eb;
+  --ink: #1c2b36;
+  --ink-dim: #5c7180;
+  --line: #b9d0df;
+  --accent: #2e6f9e;
+  --accent-2: #4a8fc4;
+  --danger: #c0392b;
+  --serif: 'Cormorant Garamond', 'Blueaka', 'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Inter', 'Blueaka', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: ui-monospace, 'JetBrains Mono', Menlo, monospace;
   --measure: 70ch;
 }
@@ -39,8 +39,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(122, 167, 255, 0.08), transparent 60%),
-    radial-gradient(900px 500px at 110% 10%, rgba(201, 169, 106, 0.06), transparent 60%);
+    radial-gradient(1200px 600px at 20% -10%, rgba(122, 167, 255, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(46, 111, 158, 0.08), transparent 60%);
   z-index: -1;
 }
 
@@ -124,7 +124,7 @@ hr {
 
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(7, 8, 13, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -221,4 +221,111 @@ hr {
 .card__summary {
   font-size: 0.95rem;
   color: var(--ink-dim);
+}
+
+/* Container directives: callouts + details */
+.callout {
+  border-left: 3px solid var(--accent-2);
+  background: var(--bg-elev);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1.2em 0;
+  max-width: var(--measure);
+}
+.callout__title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-dim);
+  margin-bottom: 0.3rem;
+}
+.callout > :first-child {
+  margin-top: 0;
+}
+.callout > :last-child {
+  margin-bottom: 0;
+}
+.callout--note,
+.callout--info {
+  border-color: var(--accent);
+}
+.callout--tip {
+  border-color: #3f9d6d;
+}
+.callout--warning,
+.callout--caution {
+  border-color: #d9a441;
+}
+.callout--danger {
+  border-color: var(--danger);
+}
+.callout--danger .callout__title {
+  color: var(--danger);
+}
+
+.directive-details {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin: 1.2em 0;
+  max-width: var(--measure);
+  background: var(--bg-elev);
+}
+.directive-details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+.directive-details[open] summary {
+  margin-bottom: 0.4rem;
+}
+
+/* Document layout with an index sidebar */
+.doc {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.toc {
+  position: sticky;
+  top: 4.5rem;
+  border-left: 1px solid var(--line);
+  padding-left: 1rem;
+  font-size: 0.88rem;
+}
+.toc__title {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  margin-bottom: 0.5rem;
+}
+.toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc__item {
+  margin: 0.25rem 0;
+}
+.toc__item--h3 {
+  padding-left: 0.9rem;
+}
+.toc__item a {
+  color: var(--ink-dim);
+  border: 0;
+}
+.toc__item a:hover {
+  color: var(--accent);
+}
+@media (max-width: 900px) {
+  .doc {
+    grid-template-columns: 1fr;
+  }
+  .toc {
+    display: none;
+  }
 }

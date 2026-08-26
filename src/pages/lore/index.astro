@@ -5,7 +5,10 @@ import { getCollection } from 'astro:content';
 const all = (await getCollection('lore', ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order);
 
-const sections = ['metaphysics', 'history', 'geography', 'cultures', 'misc'] as const;
+const characters = (await getCollection('characters', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const sections = ['metaphysics', 'history', 'geography', 'cultures', 'institution', 'misc'] as const;
 const grouped = sections.map((s) => ({
   section: s,
   entries: all.filter((e) => e.data.section === s),
@@ -34,5 +37,22 @@ const grouped = sections.map((s) => ({
         </ul>
       </section>
     ))
+  }
+
+  {
+    characters.length > 0 && (
+      <section>
+        <h2>characters</h2>
+        <div class="card-grid">
+          {characters.map((c) => (
+            <a class="card" href={`/characters/${c.slug}/`}>
+              <h3 class="card__title">{c.data.name}</h3>
+              {c.data.title && <div class="card__meta">{c.data.title}</div>}
+              <p class="card__summary">{c.data.summary}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
   }
 </BaseLayout>

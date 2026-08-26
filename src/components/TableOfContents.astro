@@ -1,0 +1,41 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'Index' } = Astro.props;
+---
+
+<nav class="toc" aria-label="Table of contents" data-toc>
+  <div class="toc__title">{title}</div>
+  <ul class="toc__list" data-toc-list></ul>
+</nav>
+
+<script>
+  function initToc() {
+    const toc = document.querySelector<HTMLElement>('[data-toc]');
+    const list = toc?.querySelector<HTMLUListElement>('[data-toc-list]');
+    const article = document.querySelector('article');
+    if (!toc || !list || !article) return;
+
+    const headings = Array.from(article.querySelectorAll<HTMLElement>('h2, h3'));
+
+    if (headings.length === 0) {
+      toc.remove();
+      return;
+    }
+
+    for (const heading of headings) {
+      if (!heading.id) continue;
+      const li = document.createElement('li');
+      li.className = `toc__item toc__item--${heading.tagName.toLowerCase()}`;
+      const a = document.createElement('a');
+      a.href = `#${heading.id}`;
+      a.textContent = heading.textContent ?? '';
+      li.appendChild(a);
+      list.appendChild(li);
+    }
+  }
+
+  initToc();
+</script>

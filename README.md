@@ -1,6 +1,6 @@
 # Ethreal
 
-A worldbuilding archive — characters, lore, timeline, and games — for the
+A worldbuilding archive — characters, lore, works, and games — for the
 world of Ethreal.
 
 ## Stack
@@ -9,11 +9,39 @@ world of Ethreal.
 - **Content Collections** — typed folders under `src/content/`:
   - `characters/` — `.mdx` files per character (frontmatter + body).
   - `lore/` — wiki entries, grouped by `section` (metaphysics, history, …).
-  - `timeline/` — `main.json` list of events.
+  - `works/` — `.md` entries supporting pictures + text (frontmatter `cover`).
   - `games/` — entries for indie games set in this world.
 - **three.js** — interactive 3D viewer (`src/components/CharacterViewer.astro`)
   for character pages. Supports GLB / glTF / FBX. **GLB recommended.**
 - **KaTeX** — LaTeX-style math in markdown (`$inline$`, `$$display$$`).
+- **Container directives** — `:::name` blocks rendered via `remark-directive`
+  (custom renderer in `src/lib/remark-directive-containers.js`).
+
+## Callouts & details
+
+Works in `.md` and `.mdx` files.
+
+```
+:::details[Click to expand]
+Hidden content goes here.
+:::
+
+:::warning
+Something might be off.
+:::
+
+:::danger[Do not]
+This will erase things.
+:::
+
+:::note
+Just a note.
+:::
+```
+
+Supported callout types: `note`, `tip`, `info`, `warning`, `caution`, `danger`.
+The `[Title]` part is optional; without it, `details` shows "Details" and
+callouts show their type name.
 
 ## Develop
 

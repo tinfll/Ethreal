@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CharacterViewer from '@/components/CharacterViewer.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -17,7 +18,9 @@ const data = entry.data;
 ---
 
 <BaseLayout title={data.name} description={data.summary}>
-  <article>
+  <div class="doc">
+    <TableOfContents />
+    <article>
     <header style="margin-top: 2rem;">
       <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
         {data.faction ?? 'Unaffiliated'} · {data.era ?? 'Era unknown'}
@@ -44,5 +47,6 @@ const data = entry.data;
     }
 
     <Content />
-  </article>
+    </article>
+  </div>
 </BaseLayout>

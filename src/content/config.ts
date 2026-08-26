@@ -27,27 +27,12 @@ const lore = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    section: z.enum(['metaphysics', 'history', 'geography', 'cultures', 'misc']),
+    section: z.enum(['metaphysics', 'history', 'geography', 'cultures', 'institution', 'misc']),
     summary: z.string().optional(),
     relatedCharacters: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     order: z.number().default(0),
-  }),
-});
-
-const timeline = defineCollection({
-  type: 'data',
-  schema: z.object({
-    events: z.array(
-      z.object({
-        era: z.string(),
-        year: z.string(),
-        title: z.string(),
-        description: z.string(),
-        characters: z.array(z.string()).default([]),
-      }),
-    ),
   }),
 });
 
@@ -66,4 +51,17 @@ const games = defineCollection({
     }),
 });
 
-export const collections = { characters, lore, timeline, games };
+const works = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      summary: z.string().optional(),
+      cover: image().optional(),
+      tags: z.array(z.string()).default([]),
+      draft: z.boolean().default(false),
+      order: z.number().default(0),
+    }),
+});
+
+export const collections = { characters, lore, games, works };

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('works', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <div class="doc">
+    <TableOfContents />
+    <article>
+    <header style="margin-top: 2rem;">
+      <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
+        work
+      </div>
+      <h1 style="margin-top: 0.2em;">{data.title}</h1>
+      {data.summary && <p style="font-size: 1.1rem; color: var(--ink-dim);">{data.summary}</p>}
+      <div>{data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+    </header>
+
+    {
+      data.cover && (
+        <img
+          src={data.cover.src}
+          alt={data.title}
+          class="work__cover"
+          width={data.cover.width}
+          height={data.cover.height}
+        />
+      )
+    }
+
+    <Content />
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .work__cover {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin: 1.6rem 0;
+    display: block;
+    background: var(--bg-elev-2);
+  }
+</style>

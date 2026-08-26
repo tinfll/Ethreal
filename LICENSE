@@ -1,24 +1,122 @@
-This is free and unencumbered software released into the public domain.
+This repository contains two distinct kinds of material, governed by
+different terms. Read both sections before using anything from this
+repository.
 
-Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+本仓库包含两类性质不同的内容，分别适用不同的授权条款。使用前请阅读全部条款。
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
+================================================================================
+1. SOFTWARE / CODE — Unlicense (Public Domain)
+   软件代码部分 —— Unlicense（公有领域）
+================================================================================
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+The "Software" means the source code in this repository: build scripts,
+configuration, HTML/CSS/JavaScript/TypeScript, Astro components, shaders,
+and any other code or tooling. It does NOT include the OC worldview
+content described in Section 2.
+
+“软件”指本仓库中的源代码：构建脚本、配置文件、HTML/CSS/JavaScript/TypeScript、
+Astro 组件、着色器以及其他代码与工具。该定义不包含第 2 节所述的 OC 世界观内容。
+
+This Software is free and unencumbered software released into the public
+domain. Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this Software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any means.
+
+In jurisdictions that recognize copyright laws, the author or authors of
+this Software dedicate any and all copyright interest in the Software to
+the public domain. We make this dedication for the benefit of the public
+at large and to the detriment of our heirs and successors. We intend
+this dedication to be an overt act of relinquishment in perpetuity of
+all present and future rights to this Software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <https://unlicense.org>
+
+================================================================================
+2. OC WORLDVIEW CONTENT — All Rights Reserved
+   OC 世界观内容 —— 版权所有，保留一切权利
+================================================================================
+
+The "OC Worldview Content" means all original creative material in this
+repository relating to the author's original characters (OCs) and their
+fictional universe, including but not limited to:
+
+  - Names, designs, appearances, personalities, biographies, and any
+    other depictions of the original characters;
+  - Settings, locations, factions, organizations, species, religions,
+    magic/physics systems, technologies, languages, and history of the
+    fictional universe;
+  - Plotlines, narratives, dialogue, lore entries, timelines, and any
+    other written worldbuilding;
+  - Artwork, illustrations, reference sheets, 3D models, textures, and
+    any other visual depictions of the above;
+  - Any derivative or adapted version of the above.
+
+“OC 世界观内容”指本仓库中与作者原创角色（OC）及其虚构世界相关的一切原创内容，
+包括但不限于：
+
+  - 原创角色的姓名、设定、外观、性格、背景、形象及一切其他表现形式；
+  - 该虚构世界的背景、地点、阵营、组织、种族、宗教、物理体系、科技、
+    语言与历史；
+  - 剧情、叙事、对白、设定文档、年表及一切其他世界观文字；
+  - 上述内容的插画、立绘、设定图、3D、贴图、音乐及一切其他视听表现；
+  - 上述内容的任何衍生或改编版本。
+
+All OC Worldview Content is © tinf dreemurr. All rights reserved.
+所有 OC 世界观内容版权归 tinf dreemurr 所有，保留一切权利。
+
+NO PERMISSION IS GRANTED to use, copy, reproduce, distribute, publish,
+display, perform, adapt, translate, modify, create derivative works of,
+train machine-learning models on, or otherwise exploit the OC Worldview
+Content, in whole or in part, in any form or by any means, whether
+commercial or non-commercial, including but not limited to:
+
+  - reposting, mirroring, or redistributing the content;
+  - fan works, fan fiction, fan art, RP, or "inspired by" works that
+    reuse named characters, settings, or lore;
+  - merchandise, prints, models, plushies, or any physical product;
+  - use in games, animations, videos, comics, novels, music, VTuber
+    avatars, or any other media;
+  - inclusion in datasets used to train AI / machine-learning models,
+    or use as input/prompt material for generative AI;
+  - NFTs, blockchain tokens, or any tokenization of the content.
+
+不授予任何人以任何方式使用 OC 世界观内容的任何权利，包括但不限于：复制、重制、
+分发、传播、发表、展示、表演、改编、翻译、修改、制作衍生作品、用于训练机器学习
+模型，或以其他任何形式利用上述内容的全部或任何部分，无论商业或非商业用途，
+具体包括但不限于：
+
+  - 转载、镜像或再分发；
+  - 使用了相关角色、设定或世界观的同人作品（同人文、同人画、RP、二创等）；
+  - 周边、印刷品、模型、玩偶或任何实体商品；
+  - 用于游戏、动画、视频、漫画、小说、音乐、VTuber 形象或其他任何媒体；
+  - 用于 AI / 机器学习模型的训练数据，或作为生成式 AI 的输入 / 提示词；
+  - 制作 NFT、区块链代币或将内容代币化。
+
+The fact that the OC Worldview Content is hosted in a public repository
+does NOT constitute a license or grant of any rights. Reading the
+content is permitted; everything else requires prior permission
+from the author.
+
+OC 世界观内容公开存放于本仓库这一事实，不构成任何形式的授权或权利让渡。
+阅读相关内容是允许的；除此之外的任何使用均须事先取得作者的许可。
+
+To request permission, contact: tinfdreemurr@gmail.com
+如需申请授权，请联系：tinfdreemurr@gmail.com
+
+================================================================================
+3. CONFLICT / 冲突条款
+================================================================================
+
+If any file or material could be interpreted as falling under both
+sections, Section 2 (All Rights Reserved) prevails for that material.
+
+若某一文件或内容可能同时被归入上述两节，则就该内容而言，以第 2 节
+（版权所有，保留一切权利）的条款为准。

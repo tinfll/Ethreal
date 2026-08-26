@@ -11,9 +11,8 @@ const pathname = Astro.url.pathname;
 
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/characters/', label: 'Characters' },
   { href: '/lore/', label: 'Lore' },
-  { href: '/timeline/', label: 'Timeline' },
+  { href: '/works/', label: 'Works' },
   { href: '/games/', label: 'Games' },
 ];
 ---
@@ -34,6 +33,8 @@ const nav = [
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
     />
+    <link rel="stylesheet" href="/font/Blueaka/Blueaka.css" />
+    <link rel="stylesheet" href="/font/Blueaka_Bold/Blueaka_Bold.css" />
     <title>{title} — Ethreal</title>
   </head>
   <body>
