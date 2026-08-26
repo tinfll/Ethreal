@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -67,5 +68,7 @@ const nav = [
     <footer class="site-footer">
       <p>Ethreal · a worldbuilding archive</p>
     </footer>
+
+    <SpeedInsights />
   </body>
 </html>

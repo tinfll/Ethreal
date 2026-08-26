@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",
+    "@vercel/speed-insights": "^2.0.0",
     "astro": "^4.16.18",
     "katex": "^0.16.11",
     "rehype-katex": "^7.0.1",
