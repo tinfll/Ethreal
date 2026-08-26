@@ -3,7 +3,7 @@ title: EarlyEthNovel1
 summary: some handwrittem draft clips
 tags: [draft]
 order: 1
-cover: public\images\xbh.png
+cover: /images/xbh.png
 ---
 
 ## 一些碎片

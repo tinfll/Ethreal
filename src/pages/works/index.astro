@@ -22,11 +22,9 @@ const works = (await getCollection('works', ({ data }) => !data.draft))
             <a class="card" href={`/works/${w.slug}/`}>
               {w.data.cover && (
                 <img
-                  src={w.data.cover.src}
+                  src={w.data.cover}
                   alt={w.data.title}
                   class="card__cover"
-                  width={w.data.cover.width}
-                  height={w.data.cover.height}
                 />
               )}
               <h3 class="card__title">{w.data.title}</h3>

@@ -3,7 +3,7 @@ title: EarlyEthNovel2
 summary: second
 tags: [draft]
 order: 1
-cover: public\images\half.png
+cover: /images/half.png
 ---
 
 

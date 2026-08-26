@@ -57,7 +57,7 @@ const works = defineCollection({
     z.object({
       title: z.string(),
       summary: z.string().optional(),
-      cover: image().optional(),
+      cover: z.string().optional(),
       tags: z.array(z.string()).default([]),
       draft: z.boolean().default(false),
       order: z.number().default(0),
