@@ -1,10 +1,24 @@
 ---
-title: EarlyEthNovel2
-summary: second
-tags: [draft]
+title: EarlyEthNovel
+summary: 理论上是自己小初高中稿记录翻版（打字打的我。。边笑边打吗这你很有生活。过于离谱的已经清掉了（对。。但是剩下来的好像也没有很正常，具体看前言吧
+tags: [相昀第一人称]
 order: 1
 cover: /images/half.png
+rating: all-ages
+status: concept
 ---
+
+
+## 前言
+
+自己曾经手写写的这样电子归档记录下来过程中，会不由自主把一些 *<b>“自认为尴尬的、错误的”</b>* 改掉，但是时过境迁（或许也就过一点点时间...），发现以前写的好有意思啊，反而改掉就没有灵魂了（对啊。。
+
+> 致我本就没有的、未来可能也将越来越贫瘠的想象力...
+
+类似一些设定，但是
+
+
+
 
 
 ~~自用llm数据集投喂ing。~~

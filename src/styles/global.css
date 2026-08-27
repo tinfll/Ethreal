@@ -162,6 +162,17 @@ hr {
   color: var(--ink);
 }
 
+/* Home hero */
+.home-hero {
+  padding: 4rem 0 2rem;
+}
+.home-hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin: 1.2rem 0 0;
+}
+
 .site-footer {
   margin-top: 4rem;
   padding: 2rem 1.5rem;
@@ -327,5 +338,89 @@ hr {
   }
   .toc {
     display: none;
+  }
+}
+
+/* Phones: let the header wrap instead of overflowing */
+.rating {
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  margin-right: 0.3em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+}
+.rating--r15,
+.rating--r17 {
+  border-color: #d9a441;
+  color: #d9a441;
+}
+.rating--r18 {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* Cover wrappers + rating overlay badges */
+.card__cover-wrap,
+.work__cover-wrap,
+.cover-wrap {
+  position: relative;
+}
+.rating--overlay {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.92);
+}
+.cover-tags {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  max-width: 70%;
+}
+.tag--overlay {
+  background: rgba(255, 255, 255, 0.92);
+}
+.cover-img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin: 1.6rem 0;
+  display: block;
+  background: var(--bg-elev-2);
+}
+.card .cover-img {
+  width: 100%;
+  margin: 0 0 0.8rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  html {
+    overflow-x: clip;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .site-header__inner {
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    padding: 0.7rem 1rem;
+  }
+  .site-header__nav {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.1rem;
+    font-size: 0.82rem;
+  }
+  .home-hero {
+    padding: 2.5rem 0 1.5rem;
   }
 }

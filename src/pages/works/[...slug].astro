@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
+import BoldLatin from '@/components/BoldLatin.astro';
+import AgeGate from '@/components/AgeGate.astro';
 import { getCollection } from 'astro:content';
+import { countWords } from '@/lib/wordCount.js';
 
 export async function getStaticPaths() {
   const entries = await getCollection('works', ({ data }) => !data.draft);
@@ -24,22 +27,49 @@ const data = entry.data;
       <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
         work
       </div>
-      <h1 style="margin-top: 0.2em;">{data.title}</h1>
+      <h1 style="margin-top: 0.2em;"><BoldLatin text={data.title} /></h1>
+      <p style="color: var(--ink-dim); font-size: 0.9rem; margin-top: 0.2rem;">
+        {data.rating !== 'all-ages' && (
+          <span class={`rating rating--${data.rating}`}>{data.rating}</span>
+        )}
+        {data.rating !== 'all-ages' && ' · '}
+        {data.status && <span style="text-transform: capitalize;">{data.status}</span>}
+        {data.status && ' · '}
+        {countWords(entry.body ?? '')} words
+      </p>
       {data.summary && <p style="font-size: 1.1rem; color: var(--ink-dim);">{data.summary}</p>}
-      <div>{data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+      <div>
+        {data.tags.map((t) => <span class="tag">{t}</span>)}
+      </div>
     </header>
 
     {
       data.cover && (
-        <img
-          src={data.cover}
-          alt={data.title}
-          class="work__cover"
-        />
+        <div class="work__cover-wrap">
+          <img
+            src={data.cover}
+            alt={data.title}
+            class="work__cover"
+          />
+          {data.tags.length > 0 && (
+            <div class="cover-tags">
+              {data.tags.map((t) => (
+                <span class="tag tag--overlay">{t}</span>
+              ))}
+            </div>
+          )}
+          {data.rating !== 'all-ages' && (
+            <span class={`rating rating--${data.rating} rating--overlay`}>
+              {data.rating}
+            </span>
+          )}
+        </div>
       )
     }
 
-    <Content />
+    <AgeGate rating={data.rating}>
+      <Content />
+    </AgeGate>
     </article>
   </div>
 </BaseLayout>

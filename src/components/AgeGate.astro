@@ -1,0 +1,72 @@
+---
+interface Props {
+  rating?: string;
+}
+
+const { rating } = Astro.props;
+const gated = rating === 'r18';
+---
+
+{
+  gated ? (
+    <div class="age-gate" data-age-gate>
+      <div class="age-gate__notice">
+        <p><strong>R18</strong> — this content is for adults only.</p>
+        <p>本内容为 R18 内容。继续阅读即表示您已满 18 周岁。</p>
+        <button type="button" data-age-confirm>
+          我已满 18 周岁 · I am 18 or older
+        </button>
+      </div>
+      <div class="age-gate__content" data-age-content>
+        <slot />
+      </div>
+    </div>
+  ) : (
+    <slot />
+  )
+}
+
+<style>
+  .age-gate__notice {
+    border: 1px solid var(--danger);
+    background: var(--bg-elev);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+  }
+  .age-gate__notice p {
+    max-width: none;
+  }
+  .age-gate__notice button {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--danger);
+    background: transparent;
+    color: var(--danger);
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .age-gate__notice button:hover {
+    background: var(--danger);
+    color: #fff;
+  }
+  .age-gate__content {
+    display: none;
+  }
+  .age-gate.is-confirmed .age-gate__notice {
+    display: none;
+  }
+  .age-gate.is-confirmed .age-gate__content {
+    display: block;
+  }
+</style>
+
+<script>
+  const gate = document.querySelector<HTMLElement>('[data-age-gate]');
+  gate
+    ?.querySelector<HTMLButtonElement>('[data-age-confirm]')
+    ?.addEventListener('click', () => {
+      gate.classList.add('is-confirmed');
+    });
+</script>

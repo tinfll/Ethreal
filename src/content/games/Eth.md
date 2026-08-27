@@ -1,7 +1,7 @@
 ---
 title: Eth
 status: concept
-summary: A narrative exploration game set in the thin times of the Late Third Spiral. Walk through places that almost are.
+summary: 理论上是主线...
 tags: [indie, narrative, exploration]
 ---
 

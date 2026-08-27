@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BoldLatin from '@/components/BoldLatin.astro';
 import { getCollection } from 'astro:content';
 
 const games = await getCollection('games');
@@ -8,6 +9,7 @@ const games = await getCollection('games');
 <BaseLayout title="Games">
   <h1>Games</h1>
   <p style="color: var(--ink-dim);">
+    烂尾工程集合（bushi） </br>
     Interactive expressions of the world.
   </p>
 
@@ -18,8 +20,25 @@ const games = await getCollection('games');
       <div class="card-grid">
         {games.map((g) => (
           <a class="card" href={`/games/${g.slug}/`}>
-            <h3 class="card__title">{g.data.title}</h3>
-            <div class="card__meta">{g.data.status}</div>
+            {g.data.cover && (
+              <div class="card__cover-wrap">
+                <img
+                  src={g.data.cover.src}
+                  alt={g.data.title}
+                  class="cover-img"
+                />
+                {g.data.rating !== 'all-ages' && (
+                  <span class={`rating rating--${g.data.rating} rating--overlay`}>
+                    {g.data.rating}
+                  </span>
+                )}
+              </div>
+            )}
+            <h3 class="card__title"><BoldLatin text={g.data.title} /></h3>
+            <div class="card__meta">
+              {g.data.rating !== 'all-ages' && <>{g.data.rating} · </>}
+              {g.data.status}
+            </div>
             <p class="card__summary">{g.data.summary}</p>
           </a>
         ))}

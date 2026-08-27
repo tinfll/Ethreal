@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
+import BoldLatin from '@/components/BoldLatin.astro';
+import AgeGate from '@/components/AgeGate.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -24,9 +26,14 @@ const data = entry.data;
       <div style="color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem;">
         {data.status}
       </div>
-      <h1 style="margin-top: 0.2em;">{data.title}</h1>
+      <h1 style="margin-top: 0.2em;"><BoldLatin text={data.title} /></h1>
       <p style="font-size: 1.1rem;">{data.summary}</p>
-      <div>{data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+      <div>
+        {data.rating !== 'all-ages' && (
+          <span class={`rating rating--${data.rating}`}>{data.rating}</span>
+        )}
+        {data.tags.map((t) => <span class="tag">{t}</span>)}
+      </div>
       {
         data.links.length > 0 && (
           <p style="margin-top: 1rem;">
@@ -37,7 +44,25 @@ const data = entry.data;
         )
       }
     </header>
-    <Content />
+    {
+      data.cover && (
+        <div class="cover-wrap">
+          <img
+            src={data.cover.src}
+            alt={data.title}
+            class="cover-img"
+          />
+          {data.rating !== 'all-ages' && (
+            <span class={`rating rating--${data.rating} rating--overlay`}>
+              {data.rating}
+            </span>
+          )}
+        </div>
+      )
+    }
+    <AgeGate rating={data.rating}>
+      <Content />
+    </AgeGate>
     </article>
   </div>
 </BaseLayout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+
+// Split into runs of Latin alphanumerics vs. everything else (CJK, kana, punctuation).
+const parts = text.split(/([A-Za-z0-9]+)/g);
+---
+
+{
+  parts.map((part) =>
+    /^[A-Za-z0-9]+$/.test(part) ? <strong>{part}</strong> : <>{part}</>,
+  )
+}

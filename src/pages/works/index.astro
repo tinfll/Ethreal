@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BoldLatin from '@/components/BoldLatin.astro';
 import { getCollection } from 'astro:content';
+import { countWords } from '@/lib/wordCount.js';
 
 const works = (await getCollection('works', ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order);
@@ -9,7 +11,8 @@ const works = (await getCollection('works', ({ data }) => !data.draft))
 <BaseLayout title="Works">
   <h1>Works</h1>
   <p style="color: var(--ink-dim);">
-    Pictures, texts, and the spaces between them.
+    一些小说和画合集<br />
+    小説と絵画のコレクション
   </p>
 
   {
@@ -21,13 +24,25 @@ const works = (await getCollection('works', ({ data }) => !data.draft))
           works.map((w) => (
             <a class="card" href={`/works/${w.slug}/`}>
               {w.data.cover && (
-                <img
-                  src={w.data.cover}
-                  alt={w.data.title}
-                  class="card__cover"
-                />
+                <div class="card__cover-wrap">
+                  <img
+                    src={w.data.cover}
+                    alt={w.data.title}
+                    class="card__cover"
+                  />
+                  {w.data.rating !== 'all-ages' && (
+                    <span class={`rating rating--${w.data.rating} rating--overlay`}>
+                      {w.data.rating}
+                    </span>
+                  )}
+                </div>
               )}
-              <h3 class="card__title">{w.data.title}</h3>
+              <h3 class="card__title"><BoldLatin text={w.data.title} /></h3>
+              <div class="card__meta">
+                {w.data.rating !== 'all-ages' && <>{w.data.rating} · </>}
+                {w.data.status && <>{w.data.status} · </>}
+                {countWords(w.body ?? '')} words
+              </div>
               {w.data.summary && <p class="card__summary">{w.data.summary}</p>}
             </a>
           ))
