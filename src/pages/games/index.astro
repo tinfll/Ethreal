@@ -23,7 +23,7 @@ const games = await getCollection('games');
             {g.data.cover && (
               <div class="card__cover-wrap">
                 <img
-                  src={g.data.cover.src}
+                  src={g.data.cover}
                   alt={g.data.title}
                   class="cover-img"
                 />

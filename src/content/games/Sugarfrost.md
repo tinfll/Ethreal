@@ -3,6 +3,7 @@ title: SugarFrost
 status: archive
 summary: 某种变换到现世界观坐标系下的近现代架空if线
 tags: [indie, narrative, exploration]
+cover: /images/sugaricon.jpg
 rating: all-ages
 ---
 

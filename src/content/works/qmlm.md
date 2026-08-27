@@ -2,7 +2,7 @@
 title: ねんとちあにじ
 summary: 怜与仟虹，尝试某种牵连双视角的校园仿写，好磕爱磕（到底是谁还没画自己磕得最上头的cp图，嗯？）
 status: released
-tags: [双视角第一人称]
+tags: [双视角第一人称,怜,仟虹]
 order: 3
 rating: r15
 # cover: /images/lbqixi.jpg

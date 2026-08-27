@@ -56,6 +56,9 @@ const works = (await getCollection('works', ({ data }) => !data.draft))
   .card__cover {
     width: 100%;
     height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
     border-radius: 4px;
     margin-bottom: 0.8rem;
     display: block;

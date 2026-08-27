@@ -51,7 +51,7 @@ const games = defineCollection({
       title: z.string(),
       status: z.enum(['concept', 'pre-production', 'in-development', 'released', 'archive']),
       rating: z.enum(['all-ages', 'r15', 'r17', 'r18']).default('all-ages'),
-      cover: image().optional(),
+      cover: z.string().optional(),
       summary: z.string(),
       tags: tagList(),
       links: z

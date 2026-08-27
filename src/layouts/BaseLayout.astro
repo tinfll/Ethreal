@@ -36,6 +36,17 @@ const nav = [
     />
     <link rel="stylesheet" href="/font/Blueaka/Blueaka.css" />
     <link rel="stylesheet" href="/font/Blueaka_Bold/Blueaka_Bold.css" />
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('theme', stored || (dark ? 'dark' : 'light'));
+        } catch (e) {
+          document.documentElement.setAttribute('theme', 'light');
+        }
+      })();
+    </script>
     <title>{title} — Ethreal</title>
   </head>
   <body>
@@ -58,6 +69,7 @@ const nav = [
             ))
           }
         </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle night mode">🌙</button>
       </div>
     </header>
 
@@ -70,5 +82,52 @@ const nav = [
     </footer>
 
     <SpeedInsights />
+
+    <script>
+      const btn = document.getElementById('theme-toggle');
+      const root = document.documentElement;
+      const sync = () => {
+        if (btn) btn.textContent = root.getAttribute('theme') === 'dark' ? '☀' : '🌙';
+      };
+      sync();
+      btn?.addEventListener('click', () => {
+        const next = root.getAttribute('theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('theme', next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch {}
+        sync();
+      });
+
+      // Lightbox: click a cover image to view the original full-size picture
+      let lightbox = null;
+      const closeLightbox = () => {
+        if (lightbox) {
+          lightbox.remove();
+          lightbox = null;
+          document.removeEventListener('keydown', onLightboxKey);
+        }
+      };
+      const onLightboxKey = (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      };
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target instanceof Element) {
+          const img = target.closest('img[data-lightbox]');
+          if (img) {
+            lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            const full = document.createElement('img');
+            full.src = img.getAttribute('src') ?? '';
+            full.alt = img.getAttribute('alt') ?? '';
+            lightbox.appendChild(full);
+            lightbox.addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', onLightboxKey);
+            document.body.appendChild(lightbox);
+          }
+        }
+      });
+    </script>
   </body>
 </html>

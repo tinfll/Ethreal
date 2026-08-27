@@ -48,9 +48,10 @@ const data = entry.data;
       data.cover && (
         <div class="cover-wrap">
           <img
-            src={data.cover.src}
+            src={data.cover}
             alt={data.title}
             class="cover-img"
+            data-lightbox
           />
           {data.rating !== 'all-ages' && (
             <span class={`rating rating--${data.rating} rating--overlay`}>
