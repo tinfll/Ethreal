@@ -1,5 +1,27 @@
 @import 'katex/dist/katex.min.css';
 
+@font-face {
+  font-family: 'SongChinese';
+  src: url('/font/songChinese/SongChinese-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SongChinese';
+  src: url('/font/songChinese/SongChinese-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SongChinese';
+  src: url('/font/songChinese/SongChinese-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #ffffff;
   --bg-elev: #e0ecf3;
@@ -10,8 +32,8 @@
   --accent: #2e6f9e;
   --accent-2: #4a8fc4;
   --danger: #c0392b;
-  --serif: 'Cormorant Garamond', 'Blueaka', 'EB Garamond', 'Iowan Old Style', Georgia, serif;
-  --sans: 'Inter', 'Blueaka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Cormorant Garamond', 'SongChinese', 'Songti SC', 'SimSun', 'EB Garamond', Georgia, serif;
+  --sans: 'Inter', 'SongChinese', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: ui-monospace, 'JetBrains Mono', Menlo, monospace;
   --measure: 70ch;
 }
