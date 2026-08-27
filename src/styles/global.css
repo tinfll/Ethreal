@@ -187,12 +187,30 @@ hr {
 /* Home hero */
 .home-hero {
   padding: 4rem 0 2rem;
+  text-align: center;
+}
+.home-hero__tagline {
+  font-size: 1.15rem;
+  color: var(--ink-dim);
+  max-width: 60ch;
+  margin: 0.6rem auto 0;
 }
 .home-hero__links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem 1.4rem;
   margin: 1.2rem 0 0;
+}
+
+/* Home about section */
+.home-about {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.home-about p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .site-footer {
