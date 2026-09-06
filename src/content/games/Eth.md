@@ -1,5 +1,5 @@
 ---
-title: Eth
+title: Eth（大纲）
 status: concept
 summary: 理论上是主线...
 tags: [indie, narrative, exploration]

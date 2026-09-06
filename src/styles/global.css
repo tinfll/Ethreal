@@ -360,6 +360,11 @@ html[theme='dark'] article {
   border-left: 1px solid var(--line);
   padding-left: 1rem;
   font-size: 0.88rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
 }
 .toc__title {
   text-transform: uppercase;
