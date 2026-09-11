@@ -1,0 +1,131 @@
+---
+interface Note {
+  title?: string;
+  body: string;
+}
+
+interface Props {
+  notes?: Note[];
+  label?: string;
+}
+
+const { notes = [], label = 'Tip' } = Astro.props;
+---
+
+{notes.length > 0 && (
+  <aside class="sn" data-sn aria-label={label}>
+    <button
+      class="sn__handle"
+      type="button"
+      data-sn-handle
+      aria-expanded="false"
+      aria-controls="sn-panel"
+      title="Click or drag inward to peek · drag back to the edge to dock"
+    >
+      <span class="sn__pin" aria-hidden="true">📌</span>
+      <span class="sn__handle-label">{label}</span>
+    </button>
+    <div class="sn__panel" id="sn-panel">
+      <div class="sn__head">
+        <span class="sn__head-label">{label}</span>
+        <button
+          class="sn__close"
+          type="button"
+          data-sn-close
+          aria-label={`Dock ${label} note`}
+        >
+          ✕
+        </button>
+      </div>
+      <div class="sn__notes">
+        {notes.map((n) => (
+          <div class="sn__note">
+            {n.title && <div class="sn__note-title">{n.title}</div>}
+            <div class="sn__note-body">{n.body}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </aside>
+)}
+
+<script>
+  const sn = document.querySelector<HTMLElement>('[data-sn]');
+  if (sn) {
+    const handle = sn.querySelector<HTMLElement>('[data-sn-handle]');
+    const closeBtn = sn.querySelector<HTMLElement>('[data-sn-close]');
+    if (handle) {
+      const handleW =
+        parseFloat(getComputedStyle(sn).getPropertyValue('--sn-handle')) || 34;
+
+      const isOpen = () => sn.classList.contains('sn--open');
+      const maxOffset = () => Math.max(0, sn.clientWidth - handleW);
+
+      let drag: {
+        id: number;
+        startX: number;
+        startOffset: number;
+        moved: boolean;
+        offset: number;
+      } | null = null;
+
+      const setOpen = (value: boolean) => {
+        sn.classList.toggle('sn--open', value);
+        handle.setAttribute('aria-expanded', String(value));
+      };
+
+      const dock = () => {
+        sn.style.transform = '';
+        sn.classList.remove('sn--dragging');
+        setOpen(false);
+      };
+
+      handle.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        const offset = isOpen() ? 0 : maxOffset();
+        drag = {
+          id: e.pointerId,
+          startX: e.clientX,
+          startOffset: offset,
+          moved: false,
+          offset,
+        };
+        handle.setPointerCapture(e.pointerId);
+        sn.classList.add('sn--dragging');
+      });
+
+      handle.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const dx = e.clientX - drag.startX;
+        if (!drag.moved && Math.abs(dx) > 4) drag.moved = true;
+        if (!drag.moved) return;
+        drag.offset = Math.min(Math.max(drag.startOffset + dx, 0), maxOffset());
+        sn.style.transform = `translateX(${drag.offset}px)`;
+      });
+
+      const finish = (e: PointerEvent) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        const { moved, offset } = drag;
+        drag = null;
+        sn.style.transform = '';
+        sn.classList.remove('sn--dragging');
+        if (moved) {
+          // Released past the halfway mark → snap open, else fall back to the edge
+          setOpen(offset < maxOffset() / 2);
+        } else {
+          // Plain click → toggle
+          setOpen(!isOpen());
+        }
+      };
+
+      handle.addEventListener('pointerup', finish);
+      handle.addEventListener('pointercancel', finish);
+
+      closeBtn?.addEventListener('click', dock);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) dock();
+      });
+    }
+  }
+</script>

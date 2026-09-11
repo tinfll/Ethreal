@@ -8,6 +8,22 @@ const tagList = () =>
     )
     .default([]);
 
+/**
+ * Side sticky notes shown on the page.
+ * Accepts a single string, an object `{ title?, body }`, or an array of both.
+ */
+const tips = () =>
+  z
+    .preprocess(
+      (v) => {
+        if (v == null || v === '') return [];
+        const arr = Array.isArray(v) ? v : [v];
+        return arr.map((t) => (typeof t === 'string' ? { body: t } : t));
+      },
+      z.array(z.object({ title: z.string().optional(), body: z.string() })),
+    )
+    .default([]);
+
 const characters = defineCollection({
   type: 'content',
   schema: ({ image }) =>
@@ -26,6 +42,7 @@ const characters = defineCollection({
         })
         .optional(),
       tags: tagList(),
+      tips: tips(),
       draft: z.boolean().default(false),
       order: z.number().default(0),
     }),
@@ -39,6 +56,7 @@ const lore = defineCollection({
     summary: z.string().optional(),
     relatedCharacters: z.array(z.string()).default([]),
     tags: tagList(),
+    tips: tips(),
     draft: z.boolean().default(false),
     order: z.number().default(0),
   }),
@@ -54,6 +72,7 @@ const games = defineCollection({
       cover: z.string().optional(),
       summary: z.string(),
       tags: tagList(),
+      tips: tips(),
       links: z
         .array(z.object({ label: z.string(), url: z.string().url() }))
         .default([]),
@@ -72,6 +91,7 @@ const works = defineCollection({
       rating: z.enum(['all-ages', 'r15', 'r17', 'r18']).default('all-ages'),
       cover: z.string().optional(),
       tags: tagList(),
+      tips: tips(),
       draft: z.boolean().default(false),
       order: z.number().default(0),
     }),

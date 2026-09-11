@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
+import StickyNote from '@/components/StickyNote.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -31,4 +32,5 @@ const data = entry.data;
     <Content />
     </article>
   </div>
+  <StickyNote notes={data.tips} label="Tip" />
 </BaseLayout>
